@@ -22,15 +22,15 @@ default settings for HLS live streaming, with NVIDIA hardware acceleration. Buil
 ### Server
 * Pull docker image and run:
 ```
-docker pull jhamlin96/nginx-rtmp-nvidia
-docker run -it -p 1935:1935 -p 8080:80 -e RTMP_PORT=1935 -e HTTP_PORT=80 --rm jhamlin96/docker-nginx-rtmp
+docker pull jhamlin96/docker-nginx-rtmp
+docker run -it -p 1935:1935 -p 8080:80 --rm jhamlin96/docker-nginx-rtmp
 ```
 or 
 
 * Build and run container from source:
 ```
 docker build -t nginx-rtmp-nvidia .
-docker run -it -p 1935:1935 -p 8080:80 -e RTMP_PORT=1935 -e HTTP_PORT=80 --rm nginx-rtmp-nvidia
+docker run -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp-nvidia
 ```
 
 * Stream live content to:

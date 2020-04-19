@@ -8,14 +8,10 @@ default settings for HLS live streaming, with NVIDIA hardware acceleration. Buil
 * Default HLS settings (See: [nginx.conf](nginx.conf))
 * Currently set up for H264 streams
 
-[![Docker Stars](https://img.shields.io/docker/stars/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/)
-[![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/builds/)
-[![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp)
-
-## Prerequisites
-* You will need to follow the os-specific instructions here to install the nvidia-docker runtime: https://github.com/NVIDIA/nvidia-container-runtime
-* Most consumer cards are limited to 2 streams. Please do research about this limitation and possible solutions.
+[![Docker Stars](https://img.shields.io/docker/stars/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/)
+[![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/builds/)
+[![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia)
 
 ## Usage
 
@@ -23,14 +19,14 @@ default settings for HLS live streaming, with NVIDIA hardware acceleration. Buil
 * Pull docker image and run:
 ```
 docker pull jhamlin96/nginx-rtmp-nvidia
-docker run -it -p 1935:1935 -p 8080:80 -e RTMP_PORT=1935 -e HTTP_PORT=80 --rm jhamlin96/docker-nginx-rtmp
+docker run -it -p 1935:1935 -p 8080:80 --rm jhamlin96/nginx-rtmp-nvidia
 ```
 or 
 
 * Build and run container from source:
 ```
 docker build -t nginx-rtmp-nvidia .
-docker run -it -p 1935:1935 -p 8080:80 -e RTMP_PORT=1935 -e HTTP_PORT=80 --rm nginx-rtmp-nvidia
+docker run -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp-nvidia
 ```
 
 * Stream live content to:
