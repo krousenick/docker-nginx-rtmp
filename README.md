@@ -8,10 +8,10 @@ default settings for HLS live streaming, with NVIDIA hardware acceleration. Buil
 * Default HLS settings (See: [nginx.conf](nginx.conf))
 * Currently set up for H264 streams
 
-[![Docker Stars](https://img.shields.io/docker/stars/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/)
-[![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/builds/)
-[![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia)
+[![Docker Stars](https://img.shields.io/docker/stars/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/)
+[![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/builds/)
+[![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp)
 
 ## Usage
 
