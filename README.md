@@ -1,31 +1,32 @@
-# docker-nginx-rtmp
+# docker-nginx-rtmp-nvidia
 A Dockerfile installing NGINX, nginx-rtmp-module and FFmpeg from source with
-default settings for HLS live streaming. Built on Alpine Linux.
+default settings for HLS live streaming, with NVIDIA hardware acceleration. Built on Ubuntu.
 
-* Nginx 1.16.1 (Stable version compiled from source)
+* Nginx 1.17.1 (compiled from source)
 * nginx-rtmp-module 1.2.1 (compiled from source)
-* ffmpeg 4.2.1 (compiled from source)
+* ffmpeg 4.2.2 (compiled from source)
 * Default HLS settings (See: [nginx.conf](nginx.conf))
+* Currently set up for H264 streams
 
-[![Docker Stars](https://img.shields.io/docker/stars/alfg/nginx-rtmp.svg)](https://hub.docker.com/r/alfg/nginx-rtmp/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/alfg/nginx-rtmp.svg)](https://hub.docker.com/r/alfg/nginx-rtmp/)
-[![Docker Automated build](https://img.shields.io/docker/automated/alfg/nginx-rtmp.svg)](https://hub.docker.com/r/alfg/nginx-rtmp/builds/)
-[![Build Status](https://travis-ci.org/alfg/docker-nginx-rtmp.svg?branch=master)](https://travis-ci.org/alfg/docker-nginx-rtmp)
+[![Docker Stars](https://img.shields.io/docker/stars/jhamlin96/nginx-rtmp-nvidia-nvidia.svg)](https://hub.docker.com/r/jhamlin96/nginx-rtmp-nvidia/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/nginx-rtmp-nvidia/)
+[![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/nginx-rtmp-nvidia.svg)](https://hub.docker.com/r/jhamlin96/nginx-rtmp-nvidia/builds/)
+[![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp-nvidia)
 
 ## Usage
 
 ### Server
 * Pull docker image and run:
 ```
-docker pull alfg/nginx-rtmp
-docker run -it -p 1935:1935 -p 8080:80 --rm alfg/nginx-rtmp
+docker pull jhamlin96/nginx-rtmp-nvidia
+docker run -it -p 1935:1935 -p 8080:80 --rm jhamlin96/nginx-rtmp-nvidia
 ```
 or 
 
 * Build and run container from source:
 ```
-docker build -t nginx-rtmp .
-docker run -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp
+docker build -t nginx-rtmp-nvidia .
+docker run -it -p 1935:1935 -p 8080:80 --rm nginx-rtmp-nvidia
 ```
 
 * Stream live content to:
@@ -65,10 +66,9 @@ http://<server ip>:8080/live/$STREAM_NAME.m3u8
 ### FFmpeg Build
 ```
 $ ffmpeg -buildconf
-
-ffmpeg version 4.2.1 Copyright (c) 2000-2019 the FFmpeg developers
-  built with gcc 6.4.0 (Alpine 6.4.0)
-  configuration: --prefix=/usr/local --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-librtmp --enable-postproc --enable-avresample --enable-libfreetype --enable-openssl --disable-debug --disable-doc --disable-ffplay --extra-libs='-lpthread -lm'
+ffmpeg version 4.2.2 Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 7 (Ubuntu 7.4.0-1ubuntu1~18.04.1)
+  configuration: --prefix=/usr/local --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --enable-libx264 --enable-libx265 --enable-libvpx --enable-libtheora --enable-libvorbis --enable-libopus --enable-libfdk-aac --enable-libass --enable-libwebp --enable-postproc --enable-avresample --enable-libfreetype --enable-openssl --disable-debug --disable-doc --disable-ffplay --extra-libs='-lpthread -lm' --enable-nvenc --enable-cuda --enable-cuvid --enable-libnpp --extra-cflags='-I/usr/local/include -I/usr/local/include/ffnvcodec -I/usr/local/cuda/include/' --extra-ldflags='-L/usr/local/lib -L/usr/local/cuda/lib64'
   libavutil      56. 31.100 / 56. 31.100
   libavcodec     58. 54.100 / 58. 54.100
   libavformat    58. 29.100 / 58. 29.100
@@ -95,7 +95,6 @@ ffmpeg version 4.2.1 Copyright (c) 2000-2019 the FFmpeg developers
     --enable-libfdk-aac
     --enable-libass
     --enable-libwebp
-    --enable-librtmp
     --enable-postproc
     --enable-avresample
     --enable-libfreetype
@@ -104,6 +103,12 @@ ffmpeg version 4.2.1 Copyright (c) 2000-2019 the FFmpeg developers
     --disable-doc
     --disable-ffplay
     --extra-libs='-lpthread -lm'
+    --enable-nvenc
+    --enable-cuda
+    --enable-cuvid
+    --enable-libnpp
+    --extra-cflags='-I/usr/local/include -I/usr/local/include/ffnvcodec -I/usr/local/cuda/include/'
+    --extra-ldflags='-L/usr/local/lib -L/usr/local/cuda/lib64'
 ```
 
 ## Resources

@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  nginx-rtmp:
+  nginx-rtmp-nvidia:
     build: .
     ports:
       - 1935:1935
