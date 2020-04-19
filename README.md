@@ -13,13 +13,17 @@ default settings for HLS live streaming, with NVIDIA hardware acceleration. Buil
 [![Docker Automated build](https://img.shields.io/docker/automated/jhamlin96/docker-nginx-rtmp.svg)](https://hub.docker.com/r/jhamlin96/docker-nginx-rtmp/builds/)
 [![Build Status](https://travis-ci.org/jhamlin96/docker-nginx-rtmp.svg?branch=master)](https://travis-ci.org/jhamlin96/docker-nginx-rtmp)
 
+## Prerequisites
+* You will need to follow the os-specific instructions here to install the nvidia-docker runtime: https://github.com/NVIDIA/nvidia-container-runtime
+* Most consumer cards are limited to 2 streams. Please do research about this limitation and possible solutions.
+
 ## Usage
 
 ### Server
 * Pull docker image and run:
 ```
-docker pull jhamlin96/nginx-rtmp-nvidia
-docker run -it -p 1935:1935 -p 8080:80 --rm jhamlin96/nginx-rtmp-nvidia
+docker pull jhamlin96/docker-nginx-rtmp
+docker run -it -p 1935:1935 -p 8080:80 --rm jhamlin96/docker-nginx-rtmp
 ```
 or 
 
