@@ -12,3 +12,4 @@ services:
       - RTMP_PORT=1935
     volumes:
       - ./certs:/opt/certs
+      - /dev/shm:/opt/data
