@@ -8,7 +8,7 @@
 #
 #
 
-FROM    nvidia/cuda:10.2-devel-ubuntu18.04 AS devel-base
+FROM    nvidia/cuda:11.1-devel-ubuntu18.04 AS devel-base
 
 ENV	    NVIDIA_DRIVER_CAPABILITIES compute,utility,video
 WORKDIR     /tmp/workdir
@@ -18,7 +18,7 @@ RUN     apt-get -yqq update && \
         apt-get autoremove -y && \
         apt-get clean -y
 
-FROM        nvidia/cuda:10.2-runtime-ubuntu18.04 AS runtime-base
+FROM        nvidia/cuda:11.1-runtime-ubuntu18.04 AS runtime-base
 
 ENV	    NVIDIA_DRIVER_CAPABILITIES compute,utility,video
 WORKDIR     /tmp/workdir
@@ -31,8 +31,8 @@ RUN     apt-get -yqq update && \
 
 FROM  devel-base as build-ffmpeg
 
-ENV     NVIDIA_HEADERS_VERSION=9.1.23.1
-ENV	FFMPEG_VERSION=4.2.2
+ENV     NVIDIA_HEADERS_VERSION=11.0.10.0
+ENV	FFMPEG_VERSION=4.3.1
 ARG 	PREFIX=/usr/local
 ARG	MAKEFLAGS="-j4"
 RUN     buildDeps="autoconf \
@@ -123,7 +123,7 @@ RUN \
 
 FROM devel-base as build-nginx 
 # Versions of Nginx and nginx-rtmp-module to use
-ENV NGINX_VERSION nginx-1.17.10
+ENV NGINX_VERSION nginx-1.19.4
 ENV NGINX_RTMP_MODULE_VERSION 1.2.1
 ARG 	PREFIX=/usr/local
 ARG	MAKEFLAGS="-j4"
